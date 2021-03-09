@@ -228,8 +228,7 @@ window.addEventListener("click", function (e) {
 
 
 })
-window.addEventListener("toucstart", function (e) {
-
+if (inputHandler.isTouched()) {
   let targetY = inputHandler.getTouchedWorldCoord().y;
   const targetX = inputHandler.getTouchedWorldCoord().x;
 
@@ -247,7 +246,10 @@ window.addEventListener("toucstart", function (e) {
 
   }
 
-})
+}
+
+
+
 init();
 
 /**
