@@ -130,13 +130,11 @@ const init = async () => {
 
 
         moles.splice(0, 1)
-        // store.x = 5
-        // store.y = 5
+
 
       }, 2000)
     }
 
-    // console.log(drawSignal)
 
 
 
@@ -186,9 +184,6 @@ const init = async () => {
 
 
 
-    // if (timeDelete < 2.8) {
-    //   clearTimeout(x)
-    // }
 
 
 
@@ -209,45 +204,14 @@ const init = async () => {
   });
 
 };
-// if (inputHandler.isTouched()) {
-//   const targetX = inputHandler.getTouchedWorldCoord().x;
-//   const targetY = inputHandler.getTouchedWorldCoord().y;
-//   console.log(store.x)
-//   console.log(targetX)
-//   let addScore = () => {
-//     score++
-//     console.log(score)
-//     window.removeEventListener("mousedown", addScore)
 
 
-
-
-//   }
-//   if (targetX <= store.x + 6 &&
-//     targetX >= store.x + 2.7 &&
-//     targetY >= store.y + 1.5 &&
-//     targetY <= store.y + 5.2
-//   ) {
-//     window.addEventListener("mousedown", addScore)
-//     store.x = 3
-//     store.y = 3
-
-//   }
-
-//   // console.log(store.x)
-
-
-// }
-let addScore = () => {
-
-
-}
 window.addEventListener("click", function (e) {
 
   let targetY = inputHandler.getTouchedWorldCoord().y;
   const targetX = inputHandler.getTouchedWorldCoord().x;
 
-  // console.log(count)
+
   if (targetX <= store.x + 6 &&
     targetX >= store.x + 2.7 &&
     targetY >= store.y + 1.5 &&
@@ -262,7 +226,7 @@ window.addEventListener("click", function (e) {
   }
 
 
-  // console.log(count)
+
 })
 init();
 
