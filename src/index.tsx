@@ -228,6 +228,26 @@ window.addEventListener("click", function (e) {
 
 
 })
+window.addEventListener("toucstart", function (e) {
+
+  let targetY = inputHandler.getTouchedWorldCoord().y;
+  const targetX = inputHandler.getTouchedWorldCoord().x;
+
+
+  if (targetX <= store.x + 6 &&
+    targetX >= store.x + 2.7 &&
+    targetY >= store.y + 1.5 &&
+    targetY <= store.y + 5.2
+  ) {
+    score++
+    console.log(score)
+
+    store.x = 3
+    store.y = 3
+
+  }
+
+})
 init();
 
 /**
