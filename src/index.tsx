@@ -228,15 +228,20 @@ window.addEventListener("click", function (e) {
 
 
 })
-if (inputHandler.isTouched()) {
+
+window.addEventListener("touchstart", function (e) {
   let targetY = inputHandler.getTouchedWorldCoord().y;
   const targetX = inputHandler.getTouchedWorldCoord().x;
+  let touchX = e.touches[0].screenX
+  let touchY = e.touches[0].screenY
+  touchX = targetX
+  touchY = targetY
 
 
-  if (targetX <= store.x + 6 &&
-    targetX >= store.x + 2.7 &&
-    targetY >= store.y + 1.5 &&
-    targetY <= store.y + 5.2
+  if (touchX <= store.x + 6 &&
+    touchX >= store.x + 2.7 &&
+    touchY >= store.y + 1.5 &&
+    touchY <= store.y + 5.2
   ) {
     score++
     console.log(score)
@@ -246,9 +251,7 @@ if (inputHandler.isTouched()) {
 
   }
 
-}
-
-
+})
 
 init();
 
