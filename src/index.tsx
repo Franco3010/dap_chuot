@@ -26,6 +26,8 @@ let store = {
 }
 let score = 0;
 let Realscore = "";
+let hitBoss = 0
+let hitted = 1
 
 const init = async () => {
   // const stage = createStage();
@@ -55,8 +57,11 @@ const init = async () => {
 
 
   const background = await loadTexture(gl, './background.png');
-  const mainAtlas = await loadAtlas(gl, './main.atlas', {});
-  const runRegion = mainAtlas.findRegion('boss_attack', 6);
+  const mainAtlas = await loadAtlas(gl, './enemy.atlas', {});
+  const runRegions = mainAtlas.findRegions('boss_projectile_A');
+  const runRegions1 = mainAtlas.findRegions('boss_die');
+  const runAnimation1 = createAnimation(0.4, runRegions1)
+  const runAnimation = createAnimation(0.1, runRegions);
 
 
   const moles: { x1: number; y: number }[] = [];
@@ -78,6 +83,7 @@ const init = async () => {
   createGameLoop(delta => {
 
     accumulate += delta;
+
 
 
     if (accumulate > DROP_RATE) {
@@ -110,15 +116,27 @@ const init = async () => {
     batch.begin();
     batch.draw(whiteTex, 0, 0, 50, 100);
     batch.draw(background, 0, 0, 50, 100);
-
+    stateTime += delta;
     for (let mole of moles) {
-      batch.draw(
-        moleImg,
-        mole.x1,
-        mole.y,
-        mole_SIZE,
-        mole_SIZE
-      );
+      if (hitBoss == 0) {
+        runAnimation1
+          .getKeyFrame(stateTime, PlayMode.LOOP)
+          .draw(batch, mole.x1, mole.y, 10, 10);
+      }
+      else {
+        runAnimation
+          .getKeyFrame(stateTime, PlayMode.LOOP)
+          .draw(batch, mole.x1, mole.y, 10, 10);
+
+      }
+
+      // batch.draw(
+      //   moleImg,
+      //   mole.x1,
+      //   mole.y,
+      //   mole_SIZE,
+      //   mole_SIZE
+      // );
       if (signal == 0) {
         store.x = mole.x1
         store.y = mole.y
@@ -134,6 +152,7 @@ const init = async () => {
 
       }, 2000)
     }
+
 
 
 
@@ -191,7 +210,7 @@ const init = async () => {
 
     batch.setColor(1, 1, 1, 1);
 
-    stateTime += delta;
+
 
 
     batch.end();
@@ -218,14 +237,16 @@ window.addEventListener("click", function (e) {
     targetY <= store.y + 5.2
   ) {
     score++
-    console.log(score)
-
+    console.log(hitBoss)
+    hitBoss = 1
     store.x = 3
     store.y = 3
 
   }
 
-
+  this.setTimeout(function () {
+    hitBoss = 0
+  }, 1000)
 
 })
 
