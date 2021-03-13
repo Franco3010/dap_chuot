@@ -266,11 +266,15 @@ window.addEventListener("touchstart", function (e) {
   ) {
     score++
     console.log(score)
+    hitBoss = 1
 
     store.x = 3
     store.y = 3
 
   }
+  this.setTimeout(function () {
+    hitBoss = 0
+  }, 1000)
 
 })
 
